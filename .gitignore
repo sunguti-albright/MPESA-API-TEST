@@ -1,1 +1,4 @@
 mpesa/
+.env
+conf.py
+__pycache__/
