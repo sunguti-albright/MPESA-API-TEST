@@ -15,6 +15,7 @@ def mpesa_token():
             'Authorization': f'Basic {en}',
         }
       )
+    print(encoded)
     data= json.loads(res.data.decode('utf-8'))
    
     return data

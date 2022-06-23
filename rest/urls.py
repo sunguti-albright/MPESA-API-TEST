@@ -3,7 +3,7 @@ from . import views
 
 
 urlpatterns = [
-    path('auth/',views.get_mpesa_auth),
-    path('stk/push',views.stkPush),
+    # path('auth/',views.get_mpesa_auth),
+    # path('stk/push',views.stkPush),
 ]
 

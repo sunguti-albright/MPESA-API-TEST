@@ -1,7 +1,9 @@
 import urllib3
 import json
 import base64
+import requests
 http = urllib3.PoolManager()
+
 conf={
     "BusinessShortCode": 174379,
     "Password": "MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMjIwNjIyMjAzNzA0",
@@ -12,8 +14,8 @@ conf={
     "PartyB": 174379,
     "PhoneNumber": 254799735661,
     "CallBackURL": "https://mydomain.com/path",
-    "AccountReference": "CompanyXLTD",
-    "TransactionDesc": "Payment of X" 
+    "AccountReference": "ParkIt ",
+    "TransactionDesc": "Payment of Parking Slot" 
 }
 
 
@@ -22,17 +24,17 @@ def stk_push(phone,amount,Password, Timestamp,token):
     # conf['Timestamp']=Timestamp
     # conf['Amount']=amount
     # conf['PartyA']= phone
-    # conf['PhoneNumber']= phone
-    payload=json.dumps(conf).encode('utf-8')
+    # conf['PhoneNumber']= phone+
+    # payload=json.dumps(conf)
     url= "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
-    print(payload)
-    res=http.request(method='POST',
+    
+    res=requests.post(
                 url=url,
-                body=payload,
+                json=conf,
                 headers={'Authorization':f'Bearer {token}'}
                 )
    
-    data=json.loads(res.data.decode('utf-8'))
+    data=res.json()
    
     return data
 
